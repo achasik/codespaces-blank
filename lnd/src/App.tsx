@@ -6,6 +6,7 @@ import './App.css'
 
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Header from './components/Header';
 
 function App() {
   //const navigate = useNavigate();
@@ -15,9 +16,9 @@ function App() {
   //   navigate("..", { relative: "path" });
   // }
   return (
-    <>
+    <>      
       <HashRouter>
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/login" element={<Login />} />
