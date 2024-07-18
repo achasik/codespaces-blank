@@ -3,60 +3,77 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Divider,
+  Drawer,
+} from "@mui/material";
 
 export default function MenuAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [open, setOpen] = React.useState(false);
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
   };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+  const DrawerList = (
+    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      <List>
+        {["Inbox", "Starred", "Send email", "Drafts"].map((text) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {["All mail", "Trash", "Spam"].map((text) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <div>
-            <Button variant="contained" onClick={handleMenu}>
+    <div>
+      <Drawer open={open} onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <Button
+              color="inherit"
+              component="div"
+              onClick={toggleDrawer(true)}
+            >
               Меню
             </Button>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 8, textAlign: "center" }}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-            </Menu>
-          </div>
-          <div>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Photos
+              News
             </Typography>
-          </div>
-          
-            <Typography variant="body1" component="div" sx={{ alignContent: 'right' }}>
-              Photos
+            <Typography
+              variant="body1"
+              component="div"
+              sx={{ flexGrow: 3, textAlign: "right" }}
+            >
+              Info
             </Typography>
-          
-        </Toolbar>
-      </AppBar>
-    </Box>
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </div>
   );
 }
