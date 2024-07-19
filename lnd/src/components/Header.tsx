@@ -19,6 +19,7 @@ export default function MenuAppBar() {
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
+
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
@@ -48,6 +49,7 @@ export default function MenuAppBar() {
         {DrawerList}
       </Drawer>
       <Box sx={{ flexGrow: 1 }}>
+        {/* <AppBar position="static" sx={{ color:'black', backgroundColor:'#f9bd27' }}> */}
         <AppBar position="static">
           <Toolbar>
             <Button
@@ -60,16 +62,24 @@ export default function MenuAppBar() {
             <Typography
               variant="h6"
               component="div"
-              sx={{ flexGrow: 8, textAlign: "center" }}
+              sx={{
+                flexGrow: 8,
+                textAlign: "left",
+                fontWeight: "bold",
+                lineHeight: "1em",
+                marginLeft: "3em",
+              }}
             >
-              News
+              Информационная система
+              <br />
+              нормативного обеспечения бизнеса
             </Typography>
             <Typography
               variant="body1"
               component="div"
               sx={{ flexGrow: 3, textAlign: "right" }}
             >
-              Info
+              Info Info Info Info Info Info Info Info
             </Typography>
           </Toolbar>
         </AppBar>
