@@ -4,49 +4,19 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import {
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Divider,
-  Drawer,
-} from "@mui/material";
+import { Drawer } from "@mui/material";
+import Menu from "./Menu";
 
-export default function MenuAppBar() {
-  const [open, setOpen] = React.useState(false);
-
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
+const Header = () => {
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const toggleDrawer = (open: boolean) => {
+    setDrawerOpen(open);
   };
 
-  const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
   return (
     <div>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
-        {DrawerList}
+      <Drawer open={drawerOpen} onClose={() => toggleDrawer(false)}>
+        <Menu onClick={toggleDrawer} />
       </Drawer>
       <Box sx={{ flexGrow: 1 }}>
         {/* <AppBar position="static" sx={{ color:'black', backgroundColor:'#f9bd27' }}> */}
@@ -55,7 +25,7 @@ export default function MenuAppBar() {
             <Button
               color="inherit"
               component="div"
-              onClick={toggleDrawer(true)}
+              onClick={() => toggleDrawer(true)}
             >
               Меню
             </Button>
@@ -75,9 +45,9 @@ export default function MenuAppBar() {
               нормативного обеспечения бизнеса
             </Typography>
             <Typography
-              variant="body1"
+              variant="subtitle2"
               component="div"
-              sx={{ flexGrow: 3, textAlign: "right" }}
+              sx={{ textAlign: "right" }}
             >
               Info Info Info Info Info Info Info Info
             </Typography>
@@ -86,4 +56,6 @@ export default function MenuAppBar() {
       </Box>
     </div>
   );
-}
+};
+
+export default Header;

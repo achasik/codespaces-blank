@@ -1,15 +1,16 @@
+import { Container } from "@mui/material";
 import { useState } from "react";
 
 const Home = () => {
   const [count, setCount] = useState(0);
   return (
-    <div>
+    <Container>
       <button onClick={() => setCount((count) => count + 1)}>
         count is {count}
       </button>
       <br />
       <a href="..">Up</a>
-    </div>
+    </Container>
   );
 };
 export default Home;
