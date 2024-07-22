@@ -4,7 +4,7 @@
 import "./App.css";
 // import { Link } from "react-router-dom";
 
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import { Container, CssBaseline } from "@mui/material";
@@ -20,7 +20,7 @@ function App() {
     <>
       <CssBaseline />
       <Container maxWidth={false} disableGutters>
-        <BrowserRouter>
+        <BrowserRouter basename="/new">
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -33,12 +33,15 @@ function App() {
           <Route path="/profile/:userId/*" element={<Profile />} /> */}
             <Route
               path="*"
-              element={
-                <Navigate
-                  to={new URL("..", window.origin + location.pathname)}
-                  replace={true}
-                />
-              }
+              Component={() => {
+                // window.location.href =
+                //   "http://portal-nob.samng.rosneft.ru" +
+                //   window.location.pathname;
+                // return null;
+                return (
+                  <div>Path {window.location.pathname + " not found"}</div>
+                );
+              }}
             />
           </Routes>
           {/* <Footer /> */}

@@ -19,9 +19,9 @@ type MenuItemType = {
 };
 
 const menuItems: MenuItemType[] = [
-  { text: "Портал", to: "http://portal-nob.samng.rosneft.ru/portal" },
   { text: "Домашняя", to: "/" },
   { text: "Two", subMenu: [{ text: "2.1", to: "/new" }] },
+  { text: "Old", to: "/lndcard" },
 ];
 
 const Menu: FC<{ onClick(open: boolean): void }> = ({ onClick }) => {
