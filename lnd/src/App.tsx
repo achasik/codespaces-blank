@@ -8,6 +8,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import { Container, CssBaseline } from "@mui/material";
+import useSWR from "swr";
+import { GET } from "./api/fetcher";
 
 function App() {
   //const navigate = useNavigate();
@@ -16,6 +18,9 @@ function App() {
   //   // in the path, instead of one level in the Route hierarchy
   //   navigate("..", { relative: "path" });
   // }
+  const { data, error, isLoading } = useSWR("/user", GET);
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
   return (
     <>
       <CssBaseline />
@@ -46,6 +51,7 @@ function App() {
           </Routes>
           {/* <Footer /> */}
         </BrowserRouter>
+        <div>{data}</div>
       </Container>
     </>
   );
