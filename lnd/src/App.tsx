@@ -12,12 +12,6 @@ import useSWR from "swr";
 import { GET } from "./api/fetcher";
 
 function App() {
-  //const navigate = useNavigate();
-  // function LevelUp() {
-  //   // Since Contact is not a parent of EditContact we need to go up one level
-  //   // in the path, instead of one level in the Route hierarchy
-  //   navigate("..", { relative: "path" });
-  // }
   const { data, error, isLoading } = useSWR("/user", GET);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
