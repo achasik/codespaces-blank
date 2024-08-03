@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 // interface fetchWrapProps {
 //   method: "get" | "post" | "delete";
@@ -7,7 +7,7 @@ import axios, { AxiosError } from "axios";
 //   //signal?: AbortSignal;
 // }
 const config = {
-  baseURL: "https://orange-winner-97rvqvw9w4vf9gg-3000.app.github.dev/",
+  baseURL: "https://expert-waffle-wrp696x7jp9c5675-3000.app.github.dev/",
   headers: {
     "Content-Type": "application/json",
   },
@@ -46,25 +46,10 @@ const config = {
 
 export const GET = async (url: string) => {
   try {
-    //const r = await axios.get(url, config);
     const res = await axios.get(url, config);
-    // if (res.status >= 400) {
-    //   const error = new Error("An error occurred while fetching the data.");
-    //   // Attach extra info to the error object.
-    //   error.message = res.data;
-    //   //throw error;
-    // }
     return res.data;
-    // return data;
   } catch (e: any) {
-    if (e instanceof AxiosError) {
-      const error = new Error("An error occurred while fetching the data.");
-      // Attach extra info to the error object.
-      error.message = e.response?.data;
-      throw error;
-    } else {
-      throw e;
-    }
+    console.log(e);
   }
 };
 // fetchWrap({ method: 'get', url });

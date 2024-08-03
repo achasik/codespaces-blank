@@ -10,43 +10,38 @@ import Header from "./components/Header";
 import { Container, CssBaseline } from "@mui/material";
 import useSWR from "swr";
 import { GET } from "./api/fetcher";
+import { User } from "./models/User";
+import { createContext } from "react";
 
+const UserContext = createContext<User>({ id: 0, displayName: "Гость" });
 function App() {
-  const { data, error, isLoading } = useSWR("/user", GET);
+  const { data: user, error, isLoading } = useSWR<User>("/user", GET);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
+  if (!user) return null;
   return (
     <>
       <CssBaseline />
-      <Container maxWidth={false} disableGutters>
-        <BrowserRouter basename="/new">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            {/* <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/article/:URLSlug" element={<Article />} />
-          <Route path="/editor" element={<NewArticle />} />
-          <Route path="/editor/:URLSlug" element={<EditArticle />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/profile/:userId/*" element={<Profile />} /> */}
-            <Route
-              path="*"
-              Component={() => {
-                // window.location.href =
-                //   "http://portal-nob.samng.rosneft.ru" +
-                //   window.location.pathname;
-                // return null;
-                return (
-                  <div>Path {window.location.pathname + " not found"}</div>
-                );
-              }}
-            />
-          </Routes>
-          {/* <Footer /> */}
-        </BrowserRouter>
-        <div>{data}</div>
-      </Container>
+      <UserContext.Provider value={user}>
+        <Container maxWidth={false} disableGutters>
+          <BrowserRouter basename="/new">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="*"
+                Component={() => {
+                  return (
+                    <div>Path {window.location.pathname + " not found"}</div>
+                  );
+                }}
+              />
+            </Routes>
+            {/* <Footer /> */}
+          </BrowserRouter>
+          <div>{`${user.id} ${user.displayName}`}</div>
+        </Container>
+      </UserContext.Provider>
     </>
   );
   //   const [count, setCount] = useState(0)

@@ -8,7 +8,7 @@ const PORT = 3000;
 
 app.get("/user", (request, response) => {
   // response.setHeader("Access-Control-Allow-Origin", "*");
-  response.status(200).send("Hello World");
+  response.status(200).send({id:0, displayName:'Гость'});
 });
 
 app
