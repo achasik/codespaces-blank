@@ -7,10 +7,13 @@ import Button from "@mui/material/Button";
 import { Drawer } from "@mui/material";
 import Menu from "./Menu";
 import { useContext } from "react";
-import { UserContext } from "../lib/context";
+import { UserContext } from "../lib/UserContext";
+// import {User} from '../models/User'
+// import UserContext from "../lib/UserContext";
+//import { UserContext } from "../lib/UserContext";
 
 const Header = () => {
-  const user=useContext(UserContext)
+  const user = useContext(UserContext);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = (open: boolean) => {
     setDrawerOpen(open);
