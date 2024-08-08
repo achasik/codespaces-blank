@@ -6,8 +6,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Drawer } from "@mui/material";
 import Menu from "./Menu";
+import { useContext } from "react";
+import { UserContext } from "../lib/context";
 
 const Header = () => {
+  const user=useContext(UserContext)
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = (open: boolean) => {
     setDrawerOpen(open);
@@ -49,7 +52,7 @@ const Header = () => {
               component="div"
               sx={{ textAlign: "right" }}
             >
-              Info Info Info Info Info Info Info Info
+              {user.displayName}
             </Typography>
           </Toolbar>
         </AppBar>
