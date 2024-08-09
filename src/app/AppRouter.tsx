@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "../pages/Layout";
 import Home from "../pages/Home";
-import { MainErrorBoundary } from "./MainErrorBoundary";
+import { MainErrorPage } from "../pages/MainErrorPage";
 
 const AppRouter = () => {
   //const router = useMemo(() => createRouter(queryClient), [queryClient]);
@@ -9,8 +9,11 @@ const AppRouter = () => {
     [
       {
         element: <Layout />,
-        errorElement: <MainErrorBoundary />,
-        children: [{ path: "/", element: <Home /> }],
+        errorElement: <MainErrorPage />,
+        children: [
+          { path: "/", element: <Home /> },
+          { path: "*", element: <MainErrorPage /> },
+        ],
       },
     ],
     { basename: "/new" }

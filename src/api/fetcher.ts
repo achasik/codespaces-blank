@@ -6,8 +6,11 @@ import axios from "axios";
 //   body?: {};
 //   //signal?: AbortSignal;
 // }
+const api_url=import.meta.env.VITE_API_URL;
+
 const config = {
-  baseURL: "https://expert-waffle-wrp696x7jp9c5675-3000.app.github.dev/",
+  //baseURL: "https://expert-waffle-wrp696x7jp9c5675-3000.app.github.dev/",
+  baseURL: api_url,
   headers: {
     "Content-Type": "application/json",
   },
@@ -50,6 +53,7 @@ export const GET = async (url: string) => {
     return res.data;
   } catch (e: any) {
     console.log(e);
+    throw(e);
   }
 };
 // fetchWrap({ method: 'get', url });

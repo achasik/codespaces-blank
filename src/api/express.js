@@ -7,11 +7,11 @@ app.use(cors());
 
 const PORT = 3000;
 
-app.get("/user", (request, response) => {
+app.get("/user/current", (request, response) => {
   // response.setHeader("Access-Control-Allow-Origin", "*");
   setTimeout((() => {
-    response.status(200).send({id:0, displayName:'Гость'});
-  }), 5000)
+    response.status(200).send({id:0, displayName:'Гость1'});
+  }), 2000)
   
 });
 

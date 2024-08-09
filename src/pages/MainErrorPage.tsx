@@ -2,7 +2,7 @@
 
 import { Button } from "@mui/material";
 
-export const MainErrorBoundary = () => {
+export const MainErrorPage = () => {
   return (
     <div
       className="flex h-screen w-screen flex-col items-center justify-center text-red-500"
